@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Jottix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/explore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Jottix</span>
+                </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html" class="active">Explore</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="profile-buttons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline">Profile</a>
+                        <a href="create-post.html" class="btn btn-primary">Post Blog</a>
+                        <a href="#" id="logout" class="btn btn-primary">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Explore Hero Section -->
+    <section class="explore-hero">
+        <div class="container">
+            <div class="explore-hero-content">
+                <h1>Discover Amazing Stories</h1>
+                <p>Explore a world of creativity, ideas, and perspectives shared by teen writers just like you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for posts, topics, or authors...">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <div class="filters">
+                <span class="filter-tag active">All</span>
+                <span class="filter-tag">Latest</span>
+                <span class="filter-tag">Popular</span>
+                <span class="filter-tag">Music</span>
+                <span class="filter-tag">Technology</span>
+                <span class="filter-tag">Gaming</span>
+                <span class="filter-tag">Fashion</span>
+                <span class="filter-tag">School Life</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Posts -->
+    <section class="explore-posts">
+        <div class="container">
+            <div class="post-grid">
+                <!-- Post 1 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category music">Music</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>Title here mate</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Jamie Chen">
+                                </div>
+                                <span>NOONE noone</span>
+                            </div>
+                            <span>May 8, 2025</span>
+                        </div>
+                        <p>Ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category technology">Technology</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>I Built My First App at 15 - Here's What I Learned</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Loagn Taylor">
+                                </div>
+                                <span>Logan Tay;or</span>
+                            </div>
+                            <span>May 10, 2025</span>
+                        </div>
+                        <p>From coding struggles to App Store launch, my journey taught me more than just programming...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category lifestyle">Lifestyle</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>Sustainable Fashion on a Teen Budget</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Maya Johnson">
+                                </div>
+                                <span>Maya Johnson</span>
+                            </div>
+                            <span>May 5, 2025</span>
+                        </div>
+                        <p>How I transformed my wardrobe to be eco-friendly without spending my entire savings...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 4 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category gaming">Gaming</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>The Rise of Teen Esports Competitors</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Tyler Kim">
+                                </div>
+                                <span>Tyler Kim</span>
+                            </div>
+                            <span>May 3, 2025</span>
+                        </div>
+                        <p>How young gamers are turning their passion into competitive careers while balancing school...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 5 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category mental-health">Mental Health</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>Finding Calm: My Journey with Anxiety</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Emma Taylor">
+                                </div>
+                                <span>Emma Taylor</span>
+                            </div>
+                            <span>May 1, 2025</span>
+                        </div>
+                        <p>The strategies and perspectives that helped me manage anxiety during high school...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 6 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category books">Books</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>5 YA Novels That Actually Get Teen Life Right</h3>
+                        <div class="post-meta">
+                            <div class="author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/30/30" alt="Sophia Clark">
+                                </div>
+                                <span>Sophia Clark</span>
+                            </div>
+                            <span>April 30, 2025</span>
+                        </div>
+                        <p>Books with authentic teen characters that don't make you cringe with unrealistic dialogue...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-item disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <a href="#" class="page-item active">1</a>
+                <a href="#" class="page-item">2</a>
+                <a href="#" class="page-item">3</a>
+                <a href="#" class="page-item">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Authors -->
+    <section class="popular-authors">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Authors</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="authors-grid">
+                <!-- Author 1 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="/api/placeholder/100/100" alt="Noone">
+                    </div>
+                    <h3>Noone</h3>
+                    <p class="author-info">Music & Culture</p>
+                    <a href="#" class="follow-btn">Follow</a>
+                </div>
+
+                <!-- Author 2 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="/api/placeholder/100/100" alt="Noone">
+                    </div>
+                    <h3>Noone</h3>
+                    <p class="author-info">Tech & Coding</p>
+                    <a href="#" class="follow-btn">Follow</a>
+                </div>
+
+                <!-- Author 3 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="/api/placeholder/100/100" alt="Noone">
+                    </div>
+                    <h3>Noone</h3>
+                    <p class="author-info">Fashion & Sustainability</p>
+                    <a href="#" class="follow-btn">Follow</a>
+                </div>
+
+                <!-- Author 4 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="/api/placeholder/100/100" alt="Noone">
+                    </div>
+                    <h3>Noone</h3>
+                    <p class="author-info">Gaming & Esports</p>
+                    <a href="#" class="follow-btn">Follow</a>
+                </div>
+
+                <!-- Author 5 -->
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="/api/placeholder/100/100" alt="Noone">
+                    </div>
+                    <h3>Noone</h3>
+                    <p class="author-info">Mental Health</p>
+                    <a href="#" class="follow-btn">Follow</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Jottix</span>
+                    <p>A platform by teens, for teens.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="explore.html">Explore</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="guidelines.html">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:contact@jottix.com">contact@jottix.co.uk</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jottix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

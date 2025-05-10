@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jottix - A Platform for Teen Writers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Jottix</span>
+                </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="profile-buttons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline">Profile</a>
+                        <a href="create-post.html" class="btn btn-primary">Post Blog</a>
+                        <a href="#" id="logout" class="btn btn-primary">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Express Yourself.<br>Share Your Voice.</h1>
+                <p>A platform by teens, for teens. Share your thoughts, stories, and creativity with the world.</p>
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary btn-lg" id="join-now">Join Now</a>
+                    <a href="explore.html" class="btn btn-outline btn-lg">Explore Posts</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/500/400" alt="Teen writers collaborating">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="featured-posts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Posts</h2>
+                <a href="explore.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="post-grid">
+                <!-- Post 1 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category music">Music</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>Why Indie Artists Are Defining Gen Z Music Tastes</h3>
+                        <div class="post-meta">
+                            <span class="author">By Jamie Chen</span>
+                            <span class="date">May 8, 2025</span>
+                        </div>
+                        <p>The underground music scene is having its moment, with indie artists reshaping how teens discover and connect with music...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category technology">Technology</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>I Built My First App at 16 - Here's What I Learned</h3>
+                        <div class="post-meta">
+                            <span class="author">By Alex Rodriguez</span>
+                            <span class="date">May 7, 2025</span>
+                        </div>
+                        <p>From coding struggles to App Store launch, my journey taught me more than just programming...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="/api/placeholder/300/200" alt="Post image">
+                        <span class="category lifestyle">Lifestyle</span>
+                    </div>
+                    <div class="post-content">
+                        <h3>Sustainable Fashion on a Teen Budget</h3>
+                        <div class="post-meta">
+                            <span class="author">By Maya Johnson</span>
+                            <span class="date">May 5, 2025</span>
+                        </div>
+                        <p>How I transformed my wardrobe to be eco-friendly without spending my entire savings...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Categories</h2>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card music">
+                    <i class="fas fa-music"></i>
+                    <h3>Music</h3>
+                </a>
+                <a href="#" class="category-card gaming">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Gaming</h3>
+                </a>
+                <a href="#" class="category-card fashion">
+                    <i class="fas fa-tshirt"></i>
+                    <h3>Fashion</h3>
+                </a>
+                <a href="#" class="category-card technology">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Technology</h3>
+                </a>
+                <a href="#" class="category-card school">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>School Life</h3>
+                </a>
+                <a href="#" class="category-card creativity">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Art & Creativity</h3>
+                </a>
+                <a href="#" class="category-card books">
+                    <i class="fas fa-book"></i>
+                    <h3>Books & Writing</h3>
+                </a>
+                <a href="#" class="category-card mental-health">
+                    <i class="fas fa-brain"></i>
+                    <h3>Mental Health</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Share Your Story?</h2>
+                <p>Join thousands of teen writers expressing themselves through Jottix. It's free, fun, and full of opportunity.</p>
+                <a href="signup.html" class="btn btn-accent btn-lg">Create Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Jottix</span>
+                    <p>A platform by teens, for teens.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="explore.html">Explore</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="guidelines.html">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jottix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93da4e1b0e78ad83',t:'MTc0Njg4OTIxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

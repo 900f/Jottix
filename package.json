@@ -1,0 +1,23 @@
+{
+    "name": "jottix",
+    "version": "1.0.0",
+    "description": "A social platform for teens",
+    "main": "src/server.js",
+    "scripts": {
+      "start": "node src/server.js",
+      "dev": "nodemon src/server.js"
+    },
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "cloudinary": "^1.32.0",
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.0",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^9.0.0",
+      "mongoose": "^6.2.1",
+      "multer": "^1.4.4"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.15"
+    }
+  }

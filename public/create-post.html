@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post - Jottix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/create-post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Jottix</span>
+                </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline" id="login-button">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="profile-buttons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline" id="profile-button">Profile</a>
+                        <a href="create-post.html" class="btn btn-primary">Post Blog</a>
+                        <a href="#" id="logout" class="btn btn-primary">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="create-post-section">
+        <div class="container">
+            <h1>Create a Blog Post</h1>
+            <form id="create-post-form" class="create-post-form">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required maxlength="100" placeholder="Enter your post title">
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" required rows="10" placeholder="Write your post content here..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="music">Music</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="technology">Technology</option>
+                        <option value="school">School Life</option>
+                        <option value="creativity">Art & Creativity</option>
+                        <option value="books">Books & Writing</option>
+                        <option value="mental-health">Mental Health</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags (comma-separated)</label>
+                    <input type="text" id="tags" name="tags" placeholder="e.g., tech, coding, tutorials">
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Image (optional)</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <img id="image-preview" src="" alt="Image Preview" style="display: none;">
+                    <button type="button" id="remove-image" class="btn btn-outline btn-sm">Remove Image</button>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">Create Post</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Jottix</span>
+                    <p>A platform by teens, for teens.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="explore.html">Explore</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="guidelines.html">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Jottix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/posts.js"></script>
+    <script>
+        // Simulate user login status check
+        var isLoggedIn = true;  // Change this based on your login system
+        
+        if (isLoggedIn) {
+            // Hide Login/Signup buttons and show Profile/Logout buttons
+            document.querySelector('.auth-buttons').style.display = 'none';
+            document.querySelector('.profile-buttons').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

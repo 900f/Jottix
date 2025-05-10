@@ -1,0 +1,81 @@
+/* Create Post Page Styles - Matching Jottix Theme */
+
+.create-post-section {
+    padding: 80px 0;
+  }
+  
+  .create-post-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="file"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    outline: none;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  .form-group input[type="file"] {
+    padding: 10px 0;
+  }
+  
+  .form-group img#image-preview {
+    margin-top: 15px;
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    object-fit: cover;
+  }
+  
+  .form-group button#remove-image {
+    margin-top: 10px;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    .create-post-section {
+      padding: 60px 0;
+    }
+  
+    .create-post-form {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  }

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Jottix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Jottix</span>
+                </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="profile-buttons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline">Profile</a>
+                        <a href="create-post.html" class="btn btn-primary">Post Blog</a>
+                        <a href="#" id="logout" class="btn btn-primary">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-box">
+                <div class="profile-view">
+                    <!-- Cover Image -->
+                    <div class="profile-cover">
+                        <img id="cover-image-view" src="/images/default-cover.jpg" alt="Cover Image">
+                    </div>
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img id="profile-image-view" src="/images/default-avatar.png" alt="Profile Image">
+                        </div>
+                        <h2 id="username-view">Username</h2>
+                        <p id="bio-view" class="profile-bio"></p>
+                    </div>
+                    <!-- User Stats -->
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="posts-count">0</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="followers-count">0</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="following-count">0</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="profile-social">
+                        <a id="instagram-link" href="#" class="social-link" style="display: none;"><i class="fab fa-instagram"></i></a>
+                        <a id="twitter-link" href="#" class="social-link" style="display: none;"><i class="fab fa-twitter"></i></a>
+                        <a id="tiktok-link" href="#" class="social-link" style="display: none;"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="profile-tabs">
+                        <button class="tab-link active" data-tab="posts">Posts</button>
+                        <button class="tab-link" data-tab="about">About</button>
+                    </div>
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="posts-content">
+                        <div class="post-grid"></div>
+                    </div>
+                    <div class="tab-content" id="about-content" style="display: none;">
+                        <div class="profile-details">
+                            <p><strong>Email:</strong> <span id="email-view"></span></p>
+                            <p><strong>Birth Date:</strong> <span id="birth-date-view"></span></p>
+                            <p><strong>Interests:</strong> <span id="interests-view"></span></p>
+                        </div>
+                    </div>
+                    <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                </div>
+                <div class="profile-edit" style="display: none;">
+                    <h2>Edit Profile</h2>
+                    <form id="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="birth-date">Birth Date</label>
+                                <input type="date" id="birth-date" name="birthDate" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="interests">Interests (comma-separated)</label>
+                                <input type="text" id="interests" name="interests">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">New Password (optional)</label>
+                                <div class="input-icon-wrapper">
+                                    <input type="password" id="password" name="password">
+                                    <i class="far fa-eye-slash toggle-password"></i>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="cover-image">Cover Image</label>
+                                <input type="file" id="cover-image" name="coverImage" accept="image/*">
+                                <img id="cover-preview" src="/images/default-cover.jpg" alt="Cover Preview">
+                                <button type="button" id="remove-cover-image" class="btn btn-outline">Remove Cover Image</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-image">Profile Image</label>
+                                <input type="file" id="profile-image" name="profileImage" accept="image/*">
+                                <img id="profile-preview" src="/images/default-avatar.png" alt="Profile Preview">
+                                <button type="button" id="remove-image" class="btn btn-outline">Remove Profile Image</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="instagram">Instagram URL (optional)</label>
+                                <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitter">Twitter URL (optional)</label>
+                                <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="tiktok">TikTok URL (optional)</label>
+                                <input type="url" id="tiktok" name="tiktok" placeholder="https://tiktok.com/@username">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="button" id="cancel-edit-btn" class="btn btn-outline">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Jottix</span>
+                    <p>A platform by teens, for teens.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="explore.html">Explore</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="guidelines.html">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Jottix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
