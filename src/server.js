@@ -9,6 +9,22 @@ connectDB();
 
 const app = express();
 
+// Redirect www.jottix.uk to jottix.uk
+app.use((req, res, next) => {
+  if (req.hostname === 'www.jottix.uk') {
+    return res.redirect(301, `https://jottix.uk${req.url}`);
+  }
+  next();
+});
+
+// Optional: Enforce HTTPS (especially on Render)
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(301, `https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
 // Log all incoming requests
 app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.url}`);
