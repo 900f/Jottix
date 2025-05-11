@@ -24,7 +24,6 @@ app.use('/uploads', express.static(path.join(__dirname, '../Uploads')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/posts', require('./routes/posts'));
-app.use('/api/inspiration', require('./routes/inspiration'));
 
 // Serve HTML pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
