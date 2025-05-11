@@ -9,7 +9,7 @@ exports.getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    console.log('Profile response:', user); // Debug
+    console.log('Profile response:', user); 
     res.json(user);
   } catch (error) {
     console.error('Error fetching profile:', error);
@@ -36,13 +36,13 @@ exports.updateProfile = async (req, res) => {
     if (profileImage) {
       const result = await cloudinary.uploader.upload(profileImage[0].path);
       user.profileImage = result.secure_url;
-      fs.unlinkSync(profileImage[0].path); // Remove temp file
+      fs.unlinkSync(profileImage[0].path); 
     }
 
     if (coverImage) {
       const result = await cloudinary.uploader.upload(coverImage[0].path);
       user.coverImage = result.secure_url;
-      fs.unlinkSync(coverImage[0].path); // Remove temp file
+      fs.unlinkSync(coverImage[0].path); 
     }
 
     await user.save();

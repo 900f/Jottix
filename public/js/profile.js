@@ -9,7 +9,72 @@ document.addEventListener('DOMContentLoaded', () => {
   const profilePreview = document.getElementById('profile-preview');
   const coverPreview = document.getElementById('cover-preview');
   const removeImageBtn = document.getElementById('remove-image');
+  const removeCoverImageBtn = document.getElementById('remove-cover-image');
   const logoutBtn = document.getElementById('logout');
+
+  // Fetch and display posts
+  const fetchPosts = async (userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found for posts fetch');
+        throw new Error('No token found');
+      }
+
+      console.log('Fetching posts for user:', userId);
+      const response = await fetch(`/api/posts/user/${userId}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+
+      console.log('Posts API Response Status:', response.status, response.statusText);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Posts API Error Response:', errorText);
+        throw new Error(`Failed to fetch posts: ${errorText}`);
+      }
+
+      const posts = await response.json();
+      console.log('Posts data:', posts);
+      const postGrid = document.querySelector('.post-grid');
+      postGrid.innerHTML = '';
+
+      if (posts.length === 0) {
+        postGrid.innerHTML = '<p class="post-grid-empty">No posts yet.</p>';
+        return;
+      }
+
+      posts.forEach(post => {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        const imageHtml = post.image && post.image !== 'https://i.imgur.com/U0y5ne8.jpeg'
+          ? `<img src="${post.image}" alt="${post.title}" class="post-image">`
+          : '';
+        postCard.innerHTML = `
+          <a href="/post.html?id=${post._id}">
+            ${imageHtml}
+            <div class="post-content">
+              <p class="post-username">@${post.user.username}</p>
+              <h3 class="post-title">${post.title}</h3>
+              <p class="post-excerpt">${post.content.substring(0, 100)}${post.content.length > 100 ? '...' : ''}</p>
+              <span class="post-category">${post.category}</span>
+              <div class="post-tags">
+                ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+              </div>
+              <div class="post-meta">
+                <p class="post-date">${new Date(post.createdAt).toLocaleDateString()}</p>
+                <p class="post-likes">${post.likes.length} likes</p>
+              </div>
+            </div>
+          </a>
+        `;
+        postGrid.appendChild(postCard);
+      });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      const postGrid = document.querySelector('.post-grid');
+      postGrid.innerHTML = '<p class="post-grid-empty">Failed to load posts.</p>';
+    }
+  };
 
   // Fetch and display profile
   const fetchProfile = async () => {
@@ -41,16 +106,45 @@ document.addEventListener('DOMContentLoaded', () => {
         ? new Date(user.birthDate).toLocaleDateString()
         : 'Not set';
       document.getElementById('interests-view').textContent = user.interests?.join(', ') || 'None';
-      document.getElementById('profile-image-view').src = user.profileImage || 'https://via.placeholder.com/100';
+      document.getElementById('bio-view').textContent = user.bio || '';
+      document.getElementById('profile-image-view').src = user.profileImage || '/images/default-avatar.png';
+      document.getElementById('cover-image-view').src = user.coverImage || '/images/default-cover.jpg';
+      document.getElementById('posts-count').textContent = user.postsCount || 0;
+      document.getElementById('followers-count').textContent = user.followersCount || 0;
+      document.getElementById('following-count').textContent = user.followingCount || 0;
+
+      // Social links
+      const instagramLink = document.getElementById('instagram-link');
+      const twitterLink = document.getElementById('twitter-link');
+      const tiktokLink = document.getElementById('tiktok-link');
+      if (user.instagram) {
+        instagramLink.href = user.instagram;
+        instagramLink.style.display = 'inline';
+      }
+      if (user.twitter) {
+        twitterLink.href = user.twitter;
+        twitterLink.style.display = 'inline';
+      }
+      if (user.tiktok) {
+        tiktokLink.href = user.tiktok;
+        tiktokLink.style.display = 'inline';
+      }
 
       // Pre-fill edit form
       document.getElementById('username').value = user.username || '';
       document.getElementById('birth-date').value = user.birthDate
         ? new Date(user.birthDate).toISOString().split('T')[0]
         : '';
+      document.getElementById('bio').value = user.bio || '';
       document.getElementById('interests').value = user.interests?.join(', ') || '';
-      profilePreview.src = user.profileImage || 'https://via.placeholder.com/100';
-      coverPreview.src = user.coverImage || 'https://via.placeholder.com/100';
+      document.getElementById('instagram').value = user.instagram || '';
+      document.getElementById('twitter').value = user.twitter || '';
+      document.getElementById('tiktok').value = user.tiktok || '';
+      profilePreview.src = user.profileImage || '/images/default-avatar.png';
+      coverPreview.src = user.coverImage || '/images/default-cover.jpg';
+
+      // Fetch posts after profile data
+      await fetchPosts(user._id);
     } catch (error) {
       console.error('Error fetching profile:', error);
       alert(`Failed to load profile: ${error.message}`);
@@ -96,12 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Remove image
+  // Remove images
   removeImageBtn.addEventListener('click', () => {
     profileImageInput.value = '';
+    profilePreview.src = '/images/default-avatar.png';
+  });
+
+  removeCoverImageBtn.addEventListener('click', () => {
     coverImageInput.value = '';
-    profilePreview.src = 'https://via.placeholder.com/100';
-    coverPreview.src = 'https://via.placeholder.com/100';
+    coverPreview.src = '/images/default-cover.jpg';
   });
 
   // Handle form submission
@@ -110,18 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formData = new FormData(profileForm);
     const token = localStorage.getItem('token');
 
-    // Append profile and cover images manually if selected
-    const profileImageFile = document.getElementById('profile-image').files[0];
-    const coverImageFile = document.getElementById('cover-image').files[0];
-
-    if (profileImageFile) {
-      formData.append('profileImage', profileImageFile);
-    }
-
-    if (coverImageFile) {
-      formData.append('coverImage', coverImageFile);
-    }
-
     try {
       const response = await fetch('/api/users/profile', {
         method: 'PUT',
@@ -129,36 +214,39 @@ document.addEventListener('DOMContentLoaded', () => {
         body: formData,
       });
 
-      const data = await response.json();
-      if (response.ok) {
-        alert('Profile updated successfully');
-        profileEdit.style.display = 'none';
-        profileView.style.display = 'block';
-        fetchProfile();
-        window.updateNavigation();
-      } else {
-        alert(data.message);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to update profile: ${errorText}`);
       }
+
+      const data = await response.json();
+      alert('Profile updated successfully');
+      profileEdit.style.display = 'none';
+      profileView.style.display = 'block';
+      fetchProfile();
     } catch (error) {
-      alert('Error updating profile');
+      console.error('Error updating profile:', error);
+      alert(`Failed to update profile: ${error.message}`);
     }
   });
 
   // Handle logout
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('token');
-    window.updateNavigation();
     window.location.href = '/login';
   });
 
   // Toggle password visibility
   const togglePassword = document.querySelector('.toggle-password');
-  togglePassword.addEventListener('click', () => {
-    const input = togglePassword.previousElementSibling;
-    input.type = input.type === 'password' ? 'text' : 'password';
-    togglePassword.classList.toggle('fa-eye');
-    togglePassword.classList.toggle('fa-eye-slash');
-  });
+  if (togglePassword) {
+    togglePassword.addEventListener('click', () => {
+      const passwordInput = document.getElementById('password');
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      togglePassword.classList.toggle('fa-eye');
+      togglePassword.classList.toggle('fa-eye-slash');
+    });
+  }
 
   // Initial fetch
   fetchProfile();

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
     <!-- Header -->
@@ -42,20 +43,31 @@
 
     <!-- Profile Section -->
     <section class="profile-section">
-        <div class="container">
-            <div class="profile-box">
-                <div class="profile-view">
-                    <!-- Cover Image -->
-                    <div class="profile-cover">
-                        <img id="cover-image-view" src=" " alt=" ">
+        <div class="profile-box">
+            <div class="profile-view">
+                <!-- Cover Image -->
+                <div class="profile-cover">
+                    <img id="cover-image-view" src="" alt="Cover Image">
+                </div>
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img id="profile-image-view" src="" alt="Profile Image">
                     </div>
-                    <!-- Profile Header -->
-                    <div class="profile-header">
-                        <div class="profile-image">
-                            <img id="profile-image-view" src=" " alt="Profile Image">
-                        </div>
-                        <h2 id="username-view">Username</h2>
+                    <div class="profile-actions">
+                        <button id="edit-profile-btn" class="btn btn-outline">Edit Profile</button>
+                    </div>
+                    <h2 id="username-view">Username</h2>
+                    <div class="profile-info">
                         <p id="bio-view" class="profile-bio"></p>
+                        <div class="profile-social">
+                            <a id="instagram-link" href="#" class="social-link" style="display: none;"><i class="fab fa-instagram"></i></a>
+                            <a id="twitter-link" href="#" class="social-link" style="display: none;"><i class="fab fa-twitter"></i></a>
+                            <a id="tiktok-link" href="#" class="social-link" style="display: none;"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <p><strong>Email:</strong> <span id="email-view"></span></p>
+                        <p><strong>Birth Date:</strong> <span id="birth-date-view"></span></p>
+                        <p><strong>Interests:</strong> <span id="interests-view"></span></p>
                     </div>
                     <!-- User Stats -->
                     <div class="profile-stats">
@@ -72,34 +84,21 @@
                             <span class="stat-label">Following</span>
                         </div>
                     </div>
-                    <!-- Social Links -->
-                    <div class="profile-social">
-                        <a id="instagram-link" href="#" class="social-link" style="display: none;"><i class="fab fa-instagram"></i></a>
-                        <a id="twitter-link" href="#" class="social-link" style="display: none;"><i class="fab fa-twitter"></i></a>
-                        <a id="tiktok-link" href="#" class="social-link" style="display: none;"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                    <!-- Tabs -->
-                    <div class="profile-tabs">
-                        <button class="tab-link active" data-tab="posts">Posts</button>
-                        <button class="tab-link" data-tab="about">About</button>
-                    </div>
-                    <!-- Tab Content -->
-                    <div class="tab-content" id="posts-content">
-                        <div class="post-grid"></div>
-                    </div>
-                    <div class="tab-content" id="about-content" style="display: none;">
-                        <div class="profile-details">
-                            <p><strong>Email:</strong> <span id="email-view"></span></p>
-                            <p><strong>Birth Date:</strong> <span id="birth-date-view"></span></p>
-                            <p><strong>Interests:</strong> <span id="interests-view"></span></p>
-                        </div>
-                    </div>
-                    <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
                 </div>
-                <div class="profile-edit" style="display: none;">
-                    <h2>Edit Profile</h2>
-                    <!-- Ensure enctype is set to multipart/form-data -->
-                    <form id="profile-form" enctype="multipart/form-data">
+                <!-- Tabs -->
+                <div class="profile-tabs">
+                    <button class="tab-link active" data-tab="posts">Posts will show on profile at a later date.</button>
+                </div>
+                <!-- Tab Content -->
+                <div class="tab-content" id="posts-content">
+                    <div class="post-grid"></div>
+                </div>
+            </div>
+            <div class="profile-edit" style="display: none;">
+                <h2>Edit Profile</h2>
+                <form id="profile-form" enctype="multipart/form-data">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="username">Username</label>
@@ -113,29 +112,32 @@
                                 <label for="bio">Bio</label>
                                 <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="interests">Interests (comma-separated)</label>
-                                <input type="text" id="interests" name="interests">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">New Password (optional)</label>
-                                <div class="input-icon-wrapper">
-                                    <input type="password" id="password" name="password">
-                                    <i class="far fa-eye-slash toggle-password"></i>
-                                </div>
-                            </div>
                             <div class="form-group full-width">
-                                <label for="cover-image">Cover Image</label>
-                                <input type="file" id="cover-image" name="coverImage" accept="image/*">
-                                <img id="cover-preview" src="/images/default-cover.jpg" alt="Cover Preview">
-                                <button type="button" id="remove-cover-image" class="btn btn-outline">Remove Cover Image</button>
+                                <label for="interests">Interests (comma-separated)</label>
+                                <input type="text" id="interests" name="interests" placeholder="e.g., music, gaming, travel">
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Profile Images</h3>
+                        <div class="form-grid">
                             <div class="form-group">
                                 <label for="profile-image">Profile Image</label>
                                 <input type="file" id="profile-image" name="profileImage" accept="image/*">
                                 <img id="profile-preview" src="/images/default-avatar.png" alt="Profile Preview">
                                 <button type="button" id="remove-image" class="btn btn-outline">Remove Profile Image</button>
                             </div>
+                            <div class="form-group">
+                                <label for="cover-image">Cover Image - Soon</label>
+                                <input type="file" id="cover-image" name="coverImage" accept="image/*">
+                                <img id="cover-preview" src="/images/default-cover.jpg" alt="Cover Preview">
+                                <button type="button" id="remove-cover-image" class="btn btn-outline">Remove Cover Image</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Social Media Links</h3>
+                        <div class="form-grid">
                             <div class="form-group">
                                 <label for="instagram">Instagram URL (optional)</label>
                                 <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/username">
@@ -149,12 +151,24 @@
                                 <input type="url" id="tiktok" name="tiktok" placeholder="https://tiktok.com/@username">
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                            <button type="button" id="cancel-edit-btn" class="btn btn-outline">Cancel</button>
+                    </div>
+                    <div class="form-section">
+                        <h3>Security</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="password">New Password (optional)</label>
+                                <div class="input-icon-wrapper">
+                                    <input type="password" id="password" name="password" placeholder="Enter new password">
+                                    <i class="far fa-eye-slash toggle-password"></i>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" id="cancel-edit-btn" class="btn btn-outline">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

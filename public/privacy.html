@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Jottix</title>
+    <title>Privacy Policy - Jottix</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="favicon.png" type="image/png">
 </head>
@@ -41,43 +40,54 @@
         </div>
     </header>
 
-    <!-- Terms of Service Section -->
+    <!-- Privacy Policy Section -->
     <section class="auth-section">
         <div class="container">
             <div class="auth-container" style="flex-direction: column; padding: 40px;">
-                <h1>Jottix Terms of Service</h1>
-                <p class="auth-subtitle"><strong>Effective Date: 10th April 2025</strong></p>
+                <h1>Jottix Privacy Policy</h1>
+                <p class="auth-subtitle"><strong>Effective Date: 11th May 2025</strong></p>
                 
                 <div class="terms-content">
-                    <p>Welcome to Jottix, the teen blog website made by teens, for teens. Before you start blogging, reading, or commenting on our platform, you need to accept our Terms of Service ("Terms"). Please read these carefully so you know what you're signing up for. By creating an account or using our platform (Jottix) in any way, you agree to these terms.</p>
+                    <p>Welcome to Jottix! We care about your privacy. Here's what you need to know:</p>
 
-                    <h2>1. Who can use Jottix?</h2>
-                    <p>You must be at least 13 years old to use Jottix. If you are believed to be below this age, your account will be terminated with immediate effect.</p>
+                    <h2>1. Info We Collect</h2>
+                    <p>- When you sign up, we collect your username, email, and password.</p>
+                    <p>- If you post blogs or comments, we collect that too.</p>
+                    <p>- We may collect IP address, browser type, and site usage data via cookies.</p>
 
-                    <h2>2. Your Account</h2>
-                    <p>You are responsible for your account and everything that happens on it. Keep your login information safe and don't share it with ANYONE. If you believe someone has accessed your account without your permission, tell us straight away at <strong>contact@jottix.co.uk</strong>.</p>
+                    <h2>2. How We Use It</h2>
+                    <p>- To create/manage your account</p>
+                    <p>- To show your posts to others</p>
+                    <p>- To improve Jottix and fix bugs</p>
+                    <p>- To keep the site safe</p>
+                    <p>- To send you important updates (no spam!)</p>
 
-                    <h2>3. Content You Post</h2>
-                    <p>You are responsible for what you create, comment, or share on Jottix. By sharing on our website, you give us (Jottix), full permission to show it on our site and share it elsewhere to help promote Jottix.</p>
+                    <h2>3. Who Sees Your Info</h2>
+                    <p>- Public posts are visible to anyone.</p>
+                    <p>- Your email and private info stay private and aren’t shared unless legally required.</p>
+                    <p>- We never sell your data.</p>
 
-                    <h2>4. Our Content</h2>
-                    <p>Everything that Jottix creates - logos, designs, and other stuff we have wrote, is ours. Don't copy it or use it without our permission, which you can ask for at <strong>contact@jottix.co.uk</strong>.</p>
+                    <h2>4. Cookies</h2>
+                    <p>- We use cookies to remember you, improve site speed, and understand how Jottix is used.</p>
+                    <p>- You can turn off cookies in your browser, but some features may not work properly.</p>
 
-                    <h2>5. Be Respectful</h2>
-                    <p>Jottix is a judgement-free community. Be kind, respectful, and have open-minded opinions. Any form of harassment or abuse will NOT be tolerated.</p>
+                    <h2>5. Your Rights</h2>
+                    <p>- You can request to access, change, or delete your data.</p>
+                    <p>- You can withdraw consent anytime.</p>
+                    <p>Email us at <strong><a href="mailto:jottixteam@null.net">jottixteam@null.net</a></strong> to make a request.</p>
 
-                    <h2>6. Termination</h2>
-                    <p>Jottix has the right to suspend or delete your account at any point if you break these Terms of Service. You may delete your account at any time through your settings.</p>
+                    <h2>6. Security</h2>
+                    <p>We protect your info with encryption and security measures. Use a strong password and don’t share it.</p>
 
-                    <h2>7. Changes to These Terms</h2>
-                    <p>We may update these Terms from time to time. If we do, we'll let you know. If you continue to use Jottix this means that you accept these terms.</p>
+                    <h2>7. Changes</h2>
+                    <p>We may update this policy. If we do, we’ll let you know. Keep using Jottix means you agree to the changes.</p>
 
-                    <h2>8. Contact Us</h2>
-                    <p>Any questions or concerns? Reach us at <strong>jottixteam@null.net</strong>.</p>
+                    <h2>Contact</h2>
+                    <p>Questions? Email us: <strong><a href="mailto:jottixteam@null.net">jottixteam@null.net</a></strong></p>
 
-                    <p><strong>By clicking 'I Agree' or using Jottix, you agree that you have read and accepted these terms.</strong></p>
+                    <p><strong>By using Jottix, you agree that you have read and accepted this Privacy Policy.</strong></p>
 
-                    <button id="agree-terms" class="btn btn-primary btn-block">I Agree</button>
+                    <button id="agree-privacy" class="btn btn-primary btn-block">Back to writing!</button>
                 </div>
             </div>
         </div>
@@ -132,13 +142,13 @@
         const isLoggedIn = localStorage.getItem('user-token') !== null;
 
         // Redirect to the appropriate page when "I Agree" is clicked
-        document.getElementById('agree-terms').addEventListener('click', function() {
+        document.getElementById('agree-privacy').addEventListener('click', function() {
             if (isLoggedIn) {
                 // If the user is logged in, redirect to the explore page
                 window.location.href = 'explore.html';
             } else {
                 // If the user is not logged in, redirect to the signup page
-                window.location.href = 'signup.html';
+                window.location.href = 'explore.html';
             }
         });
     </script>
