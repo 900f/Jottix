@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['music', 'gaming', 'fashion', 'technology', 'school', 'creativity', 'books', 'mental-health'],
+    enum: ['music', 'gaming', 'fashion', 'technology', 'school', 'creativity', 'books', 'mental-health', 'lifestyle']
   },
   tags: {
     type: [String],
@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: '',
+    default: 'https://i.imgur.com/U0y5ne8.jpeg',
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

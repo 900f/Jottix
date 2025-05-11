@@ -7,6 +7,7 @@ const Post = require('../models/Post');
    exports.createPost = async (req, res) => {
      const { title, content, category, tags } = req.body;
      const image = req.file;
+     const defaultImage = 'https://i.imgur.com/U0y5ne8.jpeg'; // Replace with your default image URL
 
      console.log('Create post request:', { title, content, category, tags, hasFile: !!image });
 
@@ -37,7 +38,7 @@ const Post = require('../models/Post');
          return res.status(404).json({ message: 'User not found' });
        }
 
-       let imageUrl = '';
+       let imageUrl = image ? image.path : defaultImage;
        if (image) {
          try {
            console.log('Uploading to Cloudinary:', image.path);

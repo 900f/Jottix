@@ -465,18 +465,19 @@
   }
   
   .like-button {
-    margin-top: 20px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: bold;
-    display: inline-flex;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    display: flex;
     align-items: center;
-  }
-  
-  .like-button.liked {
-    background-color: #ff4d6d;
-  }
+    gap: 5px;
+    cursor: pointer;
+}
+
+.like-button.liked {
+    background-color: #f44336;
+    color: white;
+    border-color: #f44336;
+}
+
   

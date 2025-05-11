@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String,
-    default: 'https://via.placeholder.com/100',
+    default: 'https://i.imgur.com/U0y5ne8.jpeg',
   },
   interests: [{ type: String }],
   createdAt: {

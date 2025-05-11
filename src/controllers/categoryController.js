@@ -9,9 +9,9 @@ exports.getCategories = async (req, res) => {
       'Fashion',
       'Lifestyle',
       'School Life',
-      'Art & Creativity',
-      'Books & Writing',
-      'Mental Health',
+      'Creativity',
+      'Books',
+      'Mental-Health',
     ];
 
     const categoryCounts = await Promise.all(

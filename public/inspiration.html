@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Jottix</title>
+    <title>Inspiration - Jottix</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/inspiration.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -24,10 +24,10 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="explore.html">Explore</a></li>
-                    <li><a href="inspiration.html">Inspiration</a></li>
+                    <li><a href="inspiration.html" class="active">Inspiration</a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="auth-buttons">
-                        <a href="login.html" class="btn btn-outline active">Login</a>
+                        <a href="login.html" class="btn btn-outline">Login</a>
                         <a href="signup.html" class="btn btn-primary">Sign Up</a>
                     </li>
                     <li class="profile-buttons" style="display: none;">
@@ -40,67 +40,79 @@
         </div>
     </header>
 
-    <!-- Auth Section -->
-    <section class="auth-section">
+    <!-- Inspiration Hero Section -->
+    <section class="inspiration-hero">
         <div class="container">
-            <div class="auth-container">
-                <div class="auth-form-container">
-                    <h1>Welcome Back!</h1>
-                    <p class="auth-subtitle">Log in to continue your writing journey</p>
-                    
-                    <div class="social-login">
-                        <button class="social-btn google">
-                            <i class="fab fa-google"></i> Continue with Google
-                        </button>
-                    </div>
-                    
-                    <div class="divider">
-                        <span>or</span>
-                    </div>
-                    
-                    <form id="login-form" class="auth-form">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" required>
-                                <i class="far fa-eye-slash toggle-password"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="form-options">
-                            <div class="remember-me">
-                                <input type="checkbox" id="remember" name="remember">
-                                <label for="remember">Remember me</label>
-                            </div>
-                            <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
-                    </form>
-                    
-                    <p class="auth-redirect">
-                        Don't have an account? <a href="signup.html">Sign up</a>
-                    </p>
+            <div class="inspiration-hero-content">
+                <h1>Find Your Writing Spark</h1>
+                <p>Get inspired with tips, stories, and prompts designed for teen writers.</p>
+                <a href="#writing-tips" class="btn btn-primary">Explore Inspiration</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Tips Section -->
+    <section id="writing-tips" class="writing-tips">
+        <div class="container">
+            <div class="section-header">
+                <h2>Writing Tips for Teens</h2>
+                <p>Practical advice to boost your creativity and skills</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <i class="fas fa-pen"></i>
+                    <h3>Write Every Day</h3>
+                    <p>Even 10 minutes of free writing can spark new ideas and improve your skills.</p>
                 </div>
-                
-                <div class="auth-image-container">
-                    <div class="auth-image">
-                        <img src="/api/placeholder/500/600" alt="Teens writing and collaborating">
-                    </div>
-                    <div class="auth-image-text">
-                        <h2>Find Your Voice</h2>
-                        <p>Join a community of teen writers sharing stories, ideas, and creativity.</p>
-                    </div>
+                <div class="tip-item">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Read Widely</h3>
+                    <p>Explore different genres to discover new styles and storytelling techniques.</p>
                 </div>
+                <div class="tip-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Embrace First Drafts</h3>
+                    <p>Don’t aim for perfection—let your ideas flow and revise later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Prompts Section -->
+    <section class="writing-prompts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Creative Writing Prompts</h2>
+                <p>Try these ideas to kickstart your next story</p>
+            </div>
+            <div class="prompts-list">
+                <div class="prompt-item">
+                    <h4>A Mysterious Letter</h4>
+                    <p>You find an old letter hidden in a library book, addressed to you, but written 50 years ago. What does it say?</p>
+                </div>
+                <div class="prompt-item">
+                    <h4>The Last City</h4>
+                    <p>Write about the last human city in a world overtaken by nature. Who lives there, and what’s their story?</p>
+                </div>
+                <div class="prompt-item">
+                    <h4>A Day in Reverse</h4>
+                    <p>Describe a day where time moves backward. How does it affect your character’s choices?</p>
+                </div>
+                <div class="prompt-item">
+                    <h4>The Forgotten Talent</h4>
+                    <p>Your character discovers they have a hidden skill they never knew about. What is it, and how do they use it?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration CTA Section -->
+    <section class="inspiration-cta">
+        <div class="container">
+            <div class="inspiration-cta-content">
+                <h2>Ready to Write Your Story?</h2>
+                <p>Join Jottix to share your work and find inspiration from other teen writers.</p>
+                <a href="signup.html" class="btn btn-light btn-lg" id="cta-button">Sign Up Now</a>
             </div>
         </div>
     </section>
@@ -148,6 +160,5 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
 </body>
 </html>

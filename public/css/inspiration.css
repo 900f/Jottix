@@ -1,0 +1,217 @@
+/* Inspiration Page Styles */
+.inspiration-hero {
+    padding-top: calc(var(--header-height) + 40px);
+    background-color: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.inspiration-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 70%;
+    height: 140%;
+    background: linear-gradient(45deg, rgba(108, 99, 255, 0.1), rgba(99, 255, 218, 0.1));
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.inspiration-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 300px;
+    padding: 60px 0;
+}
+
+.inspiration-hero-content {
+    max-width: 700px;
+}
+
+.inspiration-hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--black);
+}
+
+.inspiration-hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--dark-gray);
+}
+
+/* Writing Tips Section */
+.writing-tips {
+    padding: 80px 0;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.tip-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.tip-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.tip-item h3 {
+    margin-bottom: 15px;
+}
+
+/* Success Stories Section */
+.success-stories {
+    background-color: var(--light-gray);
+    padding: 80px 0;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.story-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.story-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.story-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.story-content {
+    padding: 20px;
+}
+
+.story-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.story-content p {
+    font-size: 1rem;
+    color: var(--dark-gray);
+}
+
+/* Writing Prompts Section */
+.writing-prompts {
+    padding: 80px 0;
+}
+
+.prompts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.prompt-item {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.prompt-item:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.prompt-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.prompt-item p {
+    font-size: 1rem;
+    color: var(--dark-gray);
+}
+
+.prompt-item:hover p {
+    color: var(--white);
+}
+
+/* Inspiration CTA Section */
+.inspiration-cta {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.inspiration-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.inspiration-cta-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.inspiration-cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 992px) {
+    .inspiration-hero-content h1 {
+        font-size: 2.4rem;
+    }
+    
+    .tips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .inspiration-cta-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .inspiration-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+}

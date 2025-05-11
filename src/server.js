@@ -9,22 +9,6 @@ connectDB();
 
 const app = express();
 
-// Redirect www.jottix.uk to jottix.uk
-app.use((req, res, next) => {
-  if (req.hostname === 'www.jottix.uk') {
-    return res.redirect(301, `https://jottix.uk${req.url}`);
-  }
-  next();
-});
-
-// Optional: Enforce HTTPS (especially on Render)
-app.use((req, res, next) => {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-    return res.redirect(301, `https://${req.headers.host}${req.url}`);
-  }
-  next();
-});
-
 // Log all incoming requests
 app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.url}`);
@@ -40,12 +24,12 @@ app.use('/uploads', express.static(path.join(__dirname, '../Uploads')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/posts', require('./routes/posts'));
-app.use('/api/categories', require('./routes/categories'));
+app.use('/api/inspiration', require('./routes/inspiration'));
 
 // Serve HTML pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
 app.get('/explore', (req, res) => res.sendFile(path.join(__dirname, '../public/explore.html')));
-app.get('/categories', (req, res) => res.sendFile(path.join(__dirname, '../public/categories.html')));
+app.get('/inspiration', (req, res) => res.sendFile(path.join(__dirname, '../public/inspiration.html')));
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, '../public/login.html')));
 app.get('/signup', (req, res) => res.sendFile(path.join(__dirname, '../public/signup.html')));
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, '../public/profile.html')));

@@ -1,6 +1,7 @@
-const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const cloudinary = require('../config/cloudinary');
+const fs = require('fs');
+const User = require('../models/User');
 
 exports.getProfile = async (req, res) => {
   try {
@@ -16,9 +17,10 @@ exports.getProfile = async (req, res) => {
   }
 };
 
+
 exports.updateProfile = async (req, res) => {
   const { username, birthDate, interests, password } = req.body;
-  const profileImage = req.file;
+  const { profileImage, coverImage } = req.files;
 
   try {
     const user = await User.findById(req.user.userId);
@@ -32,12 +34,19 @@ exports.updateProfile = async (req, res) => {
     if (password) user.password = await bcrypt.hash(password, 10);
 
     if (profileImage) {
-      const result = await cloudinary.uploader.upload(profileImage.path);
+      const result = await cloudinary.uploader.upload(profileImage[0].path);
       user.profileImage = result.secure_url;
+      fs.unlinkSync(profileImage[0].path); // Remove temp file
+    }
+
+    if (coverImage) {
+      const result = await cloudinary.uploader.upload(coverImage[0].path);
+      user.coverImage = result.secure_url;
+      fs.unlinkSync(coverImage[0].path); // Remove temp file
     }
 
     await user.save();
-    res.json({ message: 'Profile updated', user: { username: user.username, email: user.email, profileImage: user.profileImage } });
+    res.json({ message: 'Profile updated', user: { username: user.username, email: user.email, profileImage: user.profileImage, coverImage: user.coverImage } });
   } catch (error) {
     console.error('Error updating profile:', error);
     res.status(500).json({ message: 'Server error' });
