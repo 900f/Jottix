@@ -12,14 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const removeCoverImageBtn = document.getElementById('remove-cover-image');
   const logoutBtn = document.getElementById('logout');
 
-  // Get userId from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
   const targetUserId = urlParams.get('userId');
 
-  // Base API URL (adjust for production if needed)
-  const API_BASE_URL = 'http://localhost:3000'; // Match server.js PORT
+  const API_BASE_URL = 'api://api.jottix.com';
 
-  // Fetch and display posts
   const fetchPosts = async (userId) => {
     try {
       const token = localStorage.getItem('token');
