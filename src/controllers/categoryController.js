@@ -3,6 +3,7 @@ const Post = require('../models/Post');
 exports.getCategories = async (req, res) => {
   try {
     const categories = [
+      'General',
       'Music',
       'Technology',
       'Gaming',

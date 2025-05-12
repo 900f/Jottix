@@ -118,6 +118,11 @@
     color: var(--white);
 }
 
+.general {
+    background-color: #000000;
+    color: var(--white);
+}
+
 .music {
     background-color: #6C63FF;
 }
@@ -241,6 +246,11 @@
 .category-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
+}
+
+.category-card.general {
+    color: var(--white);
+    background-color: #000000;
 }
 
 .category-card.music {

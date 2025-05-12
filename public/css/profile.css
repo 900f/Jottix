@@ -25,6 +25,25 @@
 }
 
 /* Profile Header */
+
+
+/* Style for the Edit Profile button */
+#edit-profile-btn {
+    background-color: #62feda; /* Blue background */
+    color: #000000; /* White text */
+    border: 2px solid #62feda; /* Blue border */
+    padding: 8px 16px; /* Consistent padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth hover transition */
+}
+
+#edit-profile-btn:hover {
+    background-color: #62eccc; /* Darker blue on hover */
+    border-color: #62eccc; /* Match border to hover background */
+}
+
+
 .profile-header {
     position: relative;
     padding: 20px;

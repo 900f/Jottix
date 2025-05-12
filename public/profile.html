@@ -55,19 +55,23 @@
                         <img id="profile-image-view" src="" alt="Profile Image">
                     </div>
                     <div class="profile-actions">
-                        <button id="edit-profile-btn" class="btn btn-outline">Edit Profile</button>
+                        <button id="edit-profile-btn" class="btn btn-outline" style="display: none;">Edit Profile</button>
                     </div>
                     <h2 id="username-view">Username</h2>
                     <div class="profile-info">
                         <p id="bio-view" class="profile-bio"></p>
                         <div class="profile-social">
                             <a id="instagram-link" href="#" class="social-link" style="display: none;"><i class="fab fa-instagram"></i></a>
-                            <a id="twitter-link" href="#" class="social-link" style="display: none;"><i class="fab fa-twitter"></i></a>
+                            <a id="x-link" href="#" class="social-link" style="display: none;"><i class="fab fa-x-twitter"></i></a>
                             <a id="tiktok-link" href="#" class="social-link" style="display: none;"><i class="fab fa-tiktok"></i></a>
                         </div>
-                        <p><strong>Email:</strong> <span id="email-view"></span></p>
+                        <div id="email-container">
+                            <p><strong>Email:</strong> <span id="email-view"></span></p>
+                        </div>
                         <p><strong>Birth Date:</strong> <span id="birth-date-view"></span></p>
                         <p><strong>Interests:</strong> <span id="interests-view"></span></p>
+                        <p><strong>User ID:</strong> <span id="user-id-view"></span></p>
+                        <p><strong>Share Profile:</strong> <a id="share-link" href="#">Copy Link</a></p>
                     </div>
                     <!-- User Stats -->
                     <div class="profile-stats">
@@ -143,7 +147,7 @@
                                 <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/username">
                             </div>
                             <div class="form-group">
-                                <label for="twitter">Twitter URL (optional)</label>
+                                <label for="x">X URL (optional)</label>
                                 <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/username">
                             </div>
                             <div class="form-group">
@@ -204,7 +208,7 @@
                         <ul>
                             <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-x-twitter"></i> X</a></li>
                         </ul>
                     </div>
                 </div>

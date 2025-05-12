@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['music', 'gaming', 'fashion', 'technology', 'school', 'creativity', 'books', 'mental-health', 'lifestyle']
+    enum: ['general', 'music', 'gaming', 'fashion', 'technology', 'school', 'creativity', 'books', 'mental-health', 'lifestyle']
   },
   tags: {
     type: [String],
@@ -34,5 +34,7 @@ const postSchema = new mongoose.Schema({
   },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
+
+postSchema.index({ user: 1 });
 
 module.exports = mongoose.model('Post', postSchema);
