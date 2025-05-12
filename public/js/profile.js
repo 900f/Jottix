@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const targetUserId = urlParams.get('userId');
 
-  const API_BASE_URL = 'api://api.jottix.com';
+  const API_BASE_URL = '';
 
   const fetchPosts = async (userId) => {
     try {
