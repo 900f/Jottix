@@ -64,7 +64,6 @@ exports.signup = async (req, res) => {
         });
         profileImageUrl = result.secure_url;
         console.log('Cloudinary upload successful:', profileImageUrl);
-        // Clean up temporary file
         await fs.unlink(profileImage.path).catch(err => console.error('Failed to delete temp file:', err));
       } catch (cloudinaryError) {
         console.error('Cloudinary upload error:', cloudinaryError);
@@ -81,7 +80,8 @@ exports.signup = async (req, res) => {
       return res.status(500).json({ message: 'Failed to save user', error: dbError.message });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Token lasts 30 days now
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
     console.log('Signup successful, token:', token);
 
     res.json({ token, user: { username, email, profileImage: user.profileImage } });
@@ -105,8 +105,11 @@ exports.login = async (req, res) => {
       console.log('Login failed: Invalid credentials');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Token lasts 30 days now
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
     console.log('Login successful, token:', token);
+    
     res.json({ token, user: { username: user.username, email, profileImage: user.profileImage } });
   } catch (error) {
     console.error('Login error:', error);
