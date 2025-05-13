@@ -94,7 +94,6 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-
 exports.searchUsers = async (req, res) => {
   const query = req.query.query?.trim();
 

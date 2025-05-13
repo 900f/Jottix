@@ -32,7 +32,23 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  comments: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    content: {
+      type: String,
+      required: true,
+      maxlength: 500
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 });
 
 postSchema.index({ user: 1 });
