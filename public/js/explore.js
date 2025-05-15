@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isOwnComment = currentUserId && comment.user._id === currentUserId;
                     console.log('Is Own Comment:', isOwnComment, 'for Comment ID:', comment._id); // Debug
                     commentsHtml += `
-                        <div class="comment">
+                        <div class="comment" data-comment-id="${comment._id}">
                             <div class="comment-meta">
                                 <div class="author">
                                     <div class="author-avatar">
@@ -182,10 +182,40 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <div class="comment-actions">
                                     <span class="comment-date">${commentDate}</span>
+                                    <button class="reply-button" data-comment-id="${comment._id}" data-post-id="${postId}">Reply</button>
                                     ${isOwnComment ? `<button class="delete-comment" data-comment-id="${comment._id}" data-post-id="${postId}">Delete</button>` : ''}
                                 </div>
                             </div>
                             <p>${comment.content.replace(/\n/g, '<br>')}</p>
+                            <div class="reply-form hidden" data-comment-id="${comment._id}">
+                                <textarea class="reply-input" placeholder="Add a reply..." maxlength="500"></textarea>
+                                <button class="reply-submit-button">Post Reply</button>
+                            </div>
+                            <div class="replies-list">
+                                ${comment.replies && comment.replies.length > 0 ? comment.replies.map(reply => {
+                                    const replyDate = new Date(reply.createdAt).toLocaleDateString('en-US', {
+                                        year: 'numeric', month: 'short', day: 'numeric'
+                                    });
+                                    const isOwnReply = currentUserId && reply.user._id === currentUserId;
+                                    return `
+                                        <div class="reply" data-reply-id="${reply._id}">
+                                            <div class="reply-meta">
+                                                <div class="author">
+                                                    <div class="author-avatar">
+                                                        <img src="${reply.user.profileImage || 'https://placehold.co/30x30'}" alt="${reply.user.username}">
+                                                    </div>
+                                                    <span class="author-name">${reply.user.username}</span>
+                                                </div>
+                                                <div class="reply-actions">
+                                                    <span class="reply-date">${replyDate}</span>
+                                                    ${isOwnReply ? `<button class="delete-reply" data-reply-id="${reply._id}" data-comment-id="${comment._id}" data-post-id="${postId}">Delete</button>` : ''}
+                                                </div>
+                                            </div>
+                                            <p>${reply.content.replace(/\n/g, '<br>')}</p>
+                                        </div>
+                                    `;
+                                }).join('') : '<p>No replies yet.</p>'}
+                            </div>
                         </div>
                     `;
                 });
@@ -254,10 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Add event listeners for delete buttons
-            const deleteButtons = modalBody.querySelectorAll('.delete-comment');
-            console.log('Delete Buttons Found:', deleteButtons.length); // Debug
-            deleteButtons.forEach(button => {
+            // Add event listeners for delete comment buttons
+            const deleteCommentButtons = modalBody.querySelectorAll('.delete-comment');
+            console.log('Delete Comment Buttons Found:', deleteCommentButtons.length); // Debug
+            deleteCommentButtons.forEach(button => {
                 button.addEventListener('click', async () => {
                     const commentId = button.getAttribute('data-comment-id');
                     const postId = button.getAttribute('data-post-id');
@@ -286,6 +316,98 @@ document.addEventListener('DOMContentLoaded', () => {
                         } catch (error) {
                             console.error('Error deleting comment:', error.message);
                             alert('Failed to delete comment: ' + error.message);
+                        }
+                    }
+                });
+            });
+
+            // Add event listeners for reply buttons
+            const replyButtons = modalBody.querySelectorAll('.reply-button');
+            replyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const commentId = button.getAttribute('data-comment-id');
+                    const replyForm = modalBody.querySelector(`.reply-form[data-comment-id="${commentId}"]`);
+                    replyForm.classList.toggle('hidden');
+                });
+            });
+
+            const replySubmitButtons = modalBody.querySelectorAll('.reply-submit-button');
+            replySubmitButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const replyForm = button.parentElement; // Get the parent reply-form
+                    const commentId = replyForm.getAttribute('data-comment-id');
+                    const replyInput = replyForm.querySelector('.reply-input');
+                    const content = replyInput.value.trim();
+
+                    if (!content) {
+                        alert('Please enter a reply.');
+                        return;
+                    }
+
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                        alert('You must be logged in to post a reply.');
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments/${commentId}/replies`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ content })
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || `Failed to post reply: ${response.status}`);
+                        }
+
+                        replyInput.value = ''; // Clear input
+                        replyForm.classList.add('hidden'); // Hide the reply form
+                        openModal(postId); // Refresh modal to show new reply
+                    } catch (error) {
+                        console.error('Error posting reply:', error.message);
+                        alert('Failed to post reply: ' + error.message);
+                    }
+                });
+            });
+
+            // Add event listeners for delete reply buttons
+            const deleteReplyButtons = modalBody.querySelectorAll('.delete-reply');
+            console.log('Delete Reply Buttons Found:', deleteReplyButtons.length); // Debug
+            deleteReplyButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const replyId = button.getAttribute('data-reply-id');
+                    const commentId = button.getAttribute('data-comment-id');
+                    const postId = button.getAttribute('data-post-id');
+                    const token = localStorage.getItem('token');
+
+                    if (!token) {
+                        alert('You must be logged in to delete a reply.');
+                        return;
+                    }
+
+                    if (confirm('Are you sure you want to delete this reply?')) {
+                        try {
+                            const response = await fetch(`/api/posts/${postId}/comments/${commentId}/replies/${replyId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            });
+
+                            if (!response.ok) {
+                                const errorData = await response.json();
+                                throw new Error(errorData.message || 'Failed to delete reply');
+                            }
+
+                            openModal(postId); // Refresh modal to reflect deletion
+                        } catch (error) {
+                            console.error('Error deleting reply:', error.message);
+                            alert('Failed to delete reply: ' + error.message);
                         }
                     }
                 });

@@ -530,6 +530,117 @@
     background-color: #d9363e;
 }
 
+.reply-button {
+    padding: 6px 12px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.reply-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.reply-form {
+    margin: 10px 0 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reply-form.hidden {
+    display: none;
+}
+
+.reply-input {
+    padding: 8px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    resize: vertical;
+    min-height: 60px;
+    transition: var(--transition);
+}
+
+.reply-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+.reply-submit-button {
+    align-self: flex-end;
+    padding: 6px 12px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.reply-submit-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.replies-list {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.reply {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.reply:last-child {
+    border-bottom: none;
+}
+
+.reply-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+    margin-bottom: 8px;
+}
+
+.reply-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reply-date {
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+}
+
+.reply p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.delete-reply {
+    padding: 5px 10px;
+    background-color: #ff4d4f;
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.delete-reply:hover {
+    background-color: #d9363e;
+}
+
 /* User Results */
 .user-results {
     margin-top: 60px;

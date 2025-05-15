@@ -175,7 +175,8 @@ exports.getPostById = async (req, res) => {
   try {
     const post = await Post.findById(id)
       .populate('user', 'username profileImage')
-      .populate('comments.user', 'username profileImage');
+      .populate('comments.user', 'username profileImage')
+      .populate('comments.replies.user', 'username profileImage');
     if (!post) {
       console.log('Post not found:', id);
       return res.status(404).json({ message: 'Post not found' });
@@ -220,7 +221,8 @@ exports.createComment = async (req, res) => {
     await post.save();
 
     const updatedPost = await Post.findById(id)
-      .populate('comments.user', 'username profileImage');
+      .populate('comments.user', 'username profileImage')
+      .populate('comments.replies.user', 'username profileImage');
 
     res.status(201).json({
       message: 'Comment created successfully',
@@ -228,6 +230,57 @@ exports.createComment = async (req, res) => {
     });
   } catch (error) {
     console.error('Create comment error:', error.message, error.stack);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+exports.createReply = async (req, res) => {
+  const { postId, commentId } = req.params;
+  const { content } = req.body;
+  const userId = req.user.userId;
+
+  console.log('Attempting to create reply for comment:', commentId, 'in post:', postId, 'by user:', userId);
+
+  try {
+    if (!content) {
+      return res.status(400).json({ message: 'Reply content is required' });
+    }
+
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    const comment = post.comments.id(commentId);
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      console.log('User not found for ID:', userId);
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    comment.replies.push({
+      user: userId,
+      content: content.trim(),
+      createdAt: new Date()
+    });
+
+    await post.save();
+
+    const updatedPost = await Post.findById(postId)
+      .populate('comments.user', 'username profileImage')
+      .populate('comments.replies.user', 'username profileImage');
+
+    const updatedComment = updatedPost.comments.id(commentId);
+    res.status(201).json({
+      message: 'Reply created successfully',
+      reply: updatedComment.replies[updatedComment.replies.length - 1]
+    });
+  } catch (error) {
+    console.error('Create reply error:', error.message, error.stack);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
@@ -261,4 +314,49 @@ exports.deleteComment = async (req, res) => {
     console.error('Delete comment error:', error.message, error.stack);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
+};
+
+exports.deleteReply = async (req, res) => {
+  const { postId, commentId, replyId } = req.params;
+  const userId = req.user.userId;
+
+  console.log('Attempting to delete reply:', replyId, 'from comment:', commentId, 'in post:', postId, 'by user:', userId);
+
+  try {
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    const comment = post.comments.id(commentId);
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    const reply = comment.replies.id(replyId);
+    if (!reply) {
+      return res.status(404).json({ message: 'Reply not found' });
+    }
+
+    if (reply.user.toString() !== userId) {
+      return res.status(403).json({ message: 'You can only delete your own replies' });
+    }
+
+    comment.replies = comment.replies.filter(r => r._id.toString() !== replyId);
+    await post.save();
+
+    res.json({ message: 'Reply deleted successfully' });
+  } catch (error) {
+    console.error('Delete reply error:', error.message, error.stack);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+exports.getPostCount = async (req, res) => {
+    try {
+        const count = await Post.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
 };

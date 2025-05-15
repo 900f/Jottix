@@ -33,6 +33,10 @@ app.get('/login', (req, res) => res.sendFile(path.join(__dirname, '../public/log
 app.get('/signup', (req, res) => res.sendFile(path.join(__dirname, '../public/signup.html')));
 app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, '../public/profile.html')));
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, '../public/about.html')));
+app.get('/donate', (req, res) => res.sendFile(path.join(__dirname, '../public/donate.html')));
+app.get('/create-post', (req, res) => res.sendFile(path.join(__dirname, '../public/create-post.html')));
+app.get('/privact', (req, res) => res.sendFile(path.join(__dirname, '../public/privacy.html')));
+app.get('/tos', (req, res) => res.sendFile(path.join(__dirname, '../public/tos.html')));
 
 // Fallback for placeholder images
 app.get('/api/placeholder/:width/:height', (req, res) => {

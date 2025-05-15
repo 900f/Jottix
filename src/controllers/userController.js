@@ -110,3 +110,22 @@ exports.searchUsers = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
+exports.getUserCount = async (req, res) => {
+    try {
+        const count = await User.countDocuments();
+        res.json({ count });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.getCountryCount = async (req, res) => {
+    try {
+        const countries = await User.distinct('country');
+        res.json({ count: countries.length });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
