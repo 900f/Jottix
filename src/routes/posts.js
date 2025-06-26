@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const authMiddleware = require('../middleware/authMiddleware');
-const { createPost, getPosts, getPostById, toggleLike, createComment, deleteComment, createReply, deleteReply, getPostCount } = require('../controllers/postController');
+const { createPost, getPosts, getPostById, toggleLike, createComment, deleteComment, createReply, deleteReply, getPostCount, getPostsByUser } = require('../controllers/postController');
 
 router.get('/test', (req, res) => res.json({ message: 'Test route works' }));
 router.post('/', authMiddleware, upload.single('image'), createPost);
@@ -15,5 +15,6 @@ router.delete('/:postId/comments/:commentId', authMiddleware, deleteComment);
 router.post('/:postId/comments/:commentId/replies', authMiddleware, createReply);
 router.delete('/:postId/comments/:commentId/replies/:replyId', authMiddleware, deleteReply);
 router.get('/count', getPostCount);
+router.get('/user/:userId', getPostsByUser);
 
 module.exports = router;

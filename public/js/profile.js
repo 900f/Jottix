@@ -150,17 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const instagramLink = document.getElementById('instagram-link');
       const twitterLink = document.getElementById('twitter-link');
       const tiktokLink = document.getElementById('tiktok-link');
+
       if (user.instagram) {
-        instagramLink.href = user.instagram;
-        instagramLink.style.display = 'inline';
+          instagramLink.href = user.instagram;
+          instagramLink.style.display = 'inline';
+      } else {
+          instagramLink.style.display = 'none';
       }
       if (user.twitter) {
-        twitterLink.href = user.twitter;
-        twitterLink.style.display = 'inline';
+          twitterLink.href = user.twitter;
+          twitterLink.style.display = 'inline';
+      } else {
+          twitterLink.style.display = 'none';
       }
       if (user.tiktok) {
-        tiktokLink.href = user.tiktok;
-        tiktokLink.style.display = 'inline';
+          tiktokLink.href = user.tiktok;
+          tiktokLink.style.display = 'inline';
+      } else {
+          tiktokLink.style.display = 'none';
       }
 
       // Shareable link
@@ -193,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Fetch posts for the user
-      await fetchPosts(user._id);
     } catch (error) {
       console.error('Error fetching profile:', error.message);
       alert(`Failed to load profile: ${error.message}. Please try again later.`);
